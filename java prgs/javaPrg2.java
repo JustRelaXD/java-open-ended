@@ -95,7 +95,7 @@ class assistantProfessor extends Employee {
     }
 }
 
-public class empMain {
+public class javaPrg2 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
