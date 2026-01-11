@@ -9,27 +9,38 @@ public class LabMenu extends JFrame implements ActionListener {
     JMenuBar menuBar;
     JMenu programMenu;
     JMenuItem item1, item2, item3, item4, item5, item6, item7, item8, item9a, item9b, item10;
-    
+
     JPanel contentPanel;
     CardLayout cardLayout;
 
     LabMenu() {
-        setLayout(new BorderLayout());
 
         cardLayout = new CardLayout();
         contentPanel = new JPanel(cardLayout);
         add(contentPanel, BorderLayout.CENTER);
-        
+
         JPanel welcomePanel = new JPanel();
         JLabel welcomeLabel = new JLabel("Select a program from the menu above");
         welcomeLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         welcomePanel.add(welcomeLabel);
         contentPanel.add(welcomePanel, "welcome");
 
+        contentPanel.add(GenerateElectricityBill.createPanel(), "prog1");
+        contentPanel.add(GenerateEmployeePaySlip.createPanel(), "prog2");
+        contentPanel.add(PrintAreaOfAGivenShapeUsingAbstractClass.createPanel(), "prog3");
+        contentPanel.add(ExceptionHandlingDemo.createPanel(), "prog4");
+        contentPanel.add(JobApplication.createPanel(), "prog5");
+        contentPanel.add(MouseEventsDemo.createPanel(), "prog6");
+        contentPanel.add(MultithreadedApplication.createPanel(), "prog7");
+        contentPanel.add(ProducerConsumerProblem.createPanel(), "prog8");
+        contentPanel.add(StringCompareMethods.createPanel(), "prog9a");
+        contentPanel.add(StringBufferMethods.createPanel(), "prog9b");
+        contentPanel.add(FileHandlingOperation.createPanel(), "prog10");
+
         menuBar = new JMenuBar();
         programMenu = new JMenu("Select Program");
         programMenu.setFont(new Font("Arial", Font.BOLD, 16));
-       
+
         item1 = new JMenuItem("Generate Electricity Bill");
         item2 = new JMenuItem("Generate Employee Pay Slip");
         item3 = new JMenuItem("Print Area of a Given Shape (Abstract Class)");
@@ -41,93 +52,46 @@ public class LabMenu extends JFrame implements ActionListener {
         item9a = new JMenuItem("String Compare Methods (9A)");
         item9b = new JMenuItem("String Buffer Methods (9B)");
         item10 = new JMenuItem("File Handling Operation");
-       
-        Font itemFont = new Font("Arial", Font.PLAIN, 14);
-        item1.setFont(itemFont); item2.setFont(itemFont); item3.setFont(itemFont);
-        item4.setFont(itemFont); item5.setFont(itemFont); item6.setFont(itemFont);
-        item7.setFont(itemFont); item8.setFont(itemFont); item9a.setFont(itemFont);
-        item9b.setFont(itemFont); item10.setFont(itemFont);
-       
-        item1.addActionListener(this); item2.addActionListener(this); item3.addActionListener(this);
-        item4.addActionListener(this); item5.addActionListener(this); item6.addActionListener(this);
-        item7.addActionListener(this); item8.addActionListener(this); item9a.addActionListener(this);
-        item9b.addActionListener(this); item10.addActionListener(this);
-       
-        programMenu.add(item1); programMenu.add(item2); programMenu.add(item3);
-        programMenu.add(item4); programMenu.add(item5); programMenu.add(item6);
-        programMenu.add(item7); programMenu.add(item8); programMenu.add(item9a);
-        programMenu.add(item9b); programMenu.add(item10);
-       
+
+        item1.addActionListener(this); programMenu.add(item1);
+        item2.addActionListener(this); programMenu.add(item2);
+        item3.addActionListener(this); programMenu.add(item3);
+        item4.addActionListener(this); programMenu.add(item4);
+        item5.addActionListener(this); programMenu.add(item5);
+        item6.addActionListener(this); programMenu.add(item6);
+        item7.addActionListener(this); programMenu.add(item7);
+        item8.addActionListener(this); programMenu.add(item8);
+        item9a.addActionListener(this); programMenu.add(item9a);
+        item9b.addActionListener(this); programMenu.add(item9b);
+        item10.addActionListener(this); programMenu.add(item10);
+        
         menuBar.add(programMenu);
         setJMenuBar(menuBar);
-
         setSize(650, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
-        Component[] components = contentPanel.getComponents();
-        for (int i = 1; i < components.length; i++) {
-            contentPanel.remove(components[i]);
-        }
-        
-        if(e.getSource()==item1) {
-            contentPanel.add(GenerateElectricityBill.createPanel(), "prog1");
-            cardLayout.show(contentPanel, "prog1");
-        }
-        else if(e.getSource()==item2) {
-            contentPanel.add(GenerateEmployeePaySlip.createPanel(), "prog2");
-            cardLayout.show(contentPanel, "prog2");
-        }
-        else if(e.getSource()==item3) {
-            contentPanel.add(PrintAreaOfAGivenShapeUsingAbstractClass.createPanel(), "prog3");
-            cardLayout.show(contentPanel, "prog3");
-        }
-        else if(e.getSource()==item4) {
-            contentPanel.add(ExceptionHandlingDemo.createPanel(), "prog4");
-            cardLayout.show(contentPanel, "prog4");
-        }
-        else if(e.getSource()==item5) {
-            contentPanel.add(JobApplication.createPanel(), "prog5");
-            cardLayout.show(contentPanel, "prog5");
-        }
-        else if(e.getSource()==item6) {
-            contentPanel.add(MouseEventsDemo.createPanel(), "prog6");
-            cardLayout.show(contentPanel, "prog6");
-        }
-        else if(e.getSource()==item7) {
-            contentPanel.add(MultithreadedApplication.createPanel(), "prog7");
-            cardLayout.show(contentPanel, "prog7");
-        }
-        else if(e.getSource()==item8) {
-            contentPanel.add(ProducerConsumerProblem.createPanel(), "prog8");
-            cardLayout.show(contentPanel, "prog8");
-        }
-        else if(e.getSource()==item9a) {
-            contentPanel.add(StringCompareMethods.createPanel(), "prog9a");
-            cardLayout.show(contentPanel, "prog9a");
-        }
-        else if(e.getSource()==item9b) {
-            contentPanel.add(StringBufferMethods.createPanel(), "prog9b");
-            cardLayout.show(contentPanel, "prog9b");
-        }
-        else if(e.getSource()==item10) {
-            contentPanel.add(FileHandlingOperation.createPanel(), "prog10");
-            cardLayout.show(contentPanel, "prog10");
-        }
-        
-        contentPanel.revalidate();
-        contentPanel.repaint();
+        if(e.getSource()==item1) cardLayout.show(contentPanel, "prog1");
+        else if(e.getSource()==item2) cardLayout.show(contentPanel, "prog2");
+        else if(e.getSource()==item3) cardLayout.show(contentPanel, "prog3");
+        else if(e.getSource()==item4) cardLayout.show(contentPanel, "prog4");
+        else if(e.getSource()==item5) cardLayout.show(contentPanel, "prog5");
+        else if(e.getSource()==item6) cardLayout.show(contentPanel, "prog6");
+        else if(e.getSource()==item7) cardLayout.show(contentPanel, "prog7");
+        else if(e.getSource()==item8) cardLayout.show(contentPanel, "prog8");
+        else if(e.getSource()==item9a) cardLayout.show(contentPanel, "prog9a");
+        else if(e.getSource()==item9b) cardLayout.show(contentPanel, "prog9b");
+        else if(e.getSource()==item10) cardLayout.show(contentPanel, "prog10");
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new LabMenu());
+        new LabMenu();
     }
 }
 
-// ==================== ELECTRICITY BILL ====================
-
+// ELECTRICITY BILL 
 class ElectricityBill {
     int consumerNo;
     String consumerName;
@@ -189,11 +153,6 @@ class GenerateElectricityBill {
     public static JPanel createPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(null);
-
-        // JLabel title = new JLabel("Program 1: Generate Electricity Bill");
-        // title.setFont(new Font("Arial", Font.BOLD, 20));
-        // title.setBounds(30, 0, 500, 30);
-        // panel.add(title);
 
         JLabel lblNo = new JLabel("Consumer No");
         lblNo.setBounds(30,30,150,25);
@@ -275,8 +234,7 @@ class GenerateElectricityBill {
     }
 }
 
-// ==================== EMPLOYEE PAY SLIP ====================
-
+//  EMPLOYEE PAY SLIP
 class Employee {
     String name, id, address, mailId;
     long phone;
@@ -445,7 +403,7 @@ class GenerateEmployeePaySlip {
         panel.add(btnGenerate);
 
         JTextArea textArea = new JTextArea();
-        textArea.setBounds(30, 420, 440, 220);
+        textArea.setBounds(30, 420, 440, 350);
         textArea.setEditable(false);
         panel.add(textArea);
 
@@ -481,8 +439,7 @@ class GenerateEmployeePaySlip {
     }
 }
 
-// ==================== SHAPE AREA CALCULATOR ====================
-
+// SHAPE AREA CALCULATOR 
 abstract class Shape {
     int dim1, dim2;
 
@@ -595,8 +552,7 @@ class PrintAreaOfAGivenShapeUsingAbstractClass {
     }
 }
 
-// ==================== EXCEPTION HANDLING ====================
-
+// EXCEPTION HANDLING 
 class ExceptionHandlingDemo {
 
     public static JPanel createPanel() {
@@ -684,8 +640,7 @@ class ExceptionHandlingDemo {
     }
 }
 
-// ==================== JOB APPLICATION ====================
-
+// JOB APPLICATION
 class TooEarlyToApply extends Exception {
     TooEarlyToApply() {
         super("Too early to apply (must be at least 18)");
@@ -784,8 +739,7 @@ class JobApplication {
     }
 }
 
-// ==================== MOUSE EVENTS ====================
-
+//  MOUSE EVENTS
 class MouseEventsDemo {
     
     public static JPanel createPanel() {
@@ -824,7 +778,7 @@ class MouseEventsDemo {
     }
 }
 
-// ==================== MULTITHREADING ====================
+// MULTITHREADING
 
 class MultithreadedApplication {
 
@@ -906,7 +860,7 @@ class MultithreadedApplication {
     }
 }
 
-// ==================== PRODUCER CONSUMER ====================
+// PRODUCER CONSUMER
 
 class ProducerConsumerProblem {
 
@@ -1029,7 +983,7 @@ class ProducerConsumerProblem {
     }
 }
 
-// ==================== STRING COMPARE ====================
+// STRING COMPARE 
 
 class StringCompareMethods {
 
@@ -1146,7 +1100,7 @@ class StringCompareMethods {
     }
 }
 
-// ==================== STRING BUFFER ====================
+// STRING BUFFER
 
 class StringBufferMethods {
 
@@ -1313,7 +1267,7 @@ class StringBufferMethods {
     }
 }
 
-// ==================== FILE HANDLING ====================
+// FILE HANDLING
 
 class FileHandlingOperation {
 
